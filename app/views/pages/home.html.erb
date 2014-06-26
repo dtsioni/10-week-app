@@ -1,0 +1,21 @@
+    <div>
+   <h1>Welcome!</h1>
+ </div>
+   <ol>
+    
+    <% @posts_list.each do |post| %>
+      <li><%= post.author %>
+          <ul>
+            <li>
+              <p>Title:</p>
+              <%= post.title %></li>
+            <li>
+              <p>Subject:</p>
+              <%= post.body %></li>
+          </ul>
+
+      </li>
+    <% end %>
+
+  </ol>
+
