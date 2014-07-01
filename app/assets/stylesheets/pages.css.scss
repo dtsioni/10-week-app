@@ -2,16 +2,89 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com
 
-div{
-  text-align: center;
-}
 
 #homepage_welcome{
-  color:blue;
-}
-p{
-  color: red;
-  margin-left: auto;
-  margin-right: auto;
+  text-align: center;
   
+}
+.header_link{
+  text-align: center;
+  
+}
+.post_list_item_header{
+
+  background : #4D94DB; 
+  position: relative;
+  border: 1px solid black;
+  border-radius: 10px;
+  margin-bottom: 1px;
+  
+  
+}
+.clear_fix{
+  clear:both;
+}
+
+
+
+.post_list_item_header div{
+  
+
+}
+
+#time{
+}
+
+#subject{
+  display:inline;
+  float: left;
+}
+.post_list_item_header p {
+  
+  margin: 0;
+  margin-left: 5px;
+}
+
+.post_list_item_body{
+  background : lightblue;
+  margin-bottom: 15px;
+  border: 1px solid black;
+  border-radius: 10px;
+
+  
+}
+
+.post_list_item_body_info{
+  margin:0;
+  margin-left:5px;
+}
+
+
+
+.links{
+  float:right;
+  margin-right: 7px;
+}
+
+.heading{
+  margin:0;
+  margin-left:5px;
+  font-family: Arial  ;
+}
+
+a:link {
+  color: #022636;
+  text-decoration: none;
+}
+a:visited{
+  color: #022636;
+  text-decoration: none;
+}
+a:hover{
+  color: #022636;
+  text-decoration:underline;
+}
+a:active{
+  color: #022636;
+  text-decoration:underline;
 }
