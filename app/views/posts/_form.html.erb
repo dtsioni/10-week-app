@@ -11,6 +11,10 @@
     </div>
   <% end %>
   <div class="field">
+    <%= f.label :User %><br>
+    <%= f.select :user_id, User.all.collect { |p| [ p.username, p.id ] } %>
+  </div>
+  <div class="field">
     <%= f.label :title %><br>
     <%= f.text_field :title %>
   </div>
@@ -19,10 +23,7 @@
     <%= f.text_field :body %>
   </div>
   
-  <div class="field">
-    <%= f.label :author %><br>
-    <%= f.text_field :author %>
-  </div>
+  
   <div class="actions">
     <%= f.submit %>
   </div>

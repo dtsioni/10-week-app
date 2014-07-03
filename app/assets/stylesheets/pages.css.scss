@@ -2,10 +2,13 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com
 
-
 #homepage_welcome{
   text-align: center;
   
+}
+body{
+  background-image: url("http://images2.layoutsparks.com/1/250826/trees-woods-forest-tall.jpg");
+
 }
 .header_link{
   text-align: center;
@@ -26,7 +29,12 @@
 }
 
 
-
+.post_list_item_header{
+  
+  margin: auto;
+  margin-left: 200px;
+  margin-right:200px ; 
+}
 .post_list_item_header div{
   
 
@@ -50,6 +58,8 @@
   margin-bottom: 15px;
   border: 1px solid black;
   border-radius: 10px;
+  margin-left: 200px;
+  margin-right:200px;
 
   
 }

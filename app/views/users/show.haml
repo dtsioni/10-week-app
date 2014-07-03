@@ -1,0 +1,15 @@
+%p{:id => "notice"}
+  =notice
+%p
+  %strong Username:
+    =@user.username
+
+%p
+  %strong Posts:
+    =Post.all.find(user_id)
+%p
+  %strong User Created:
+    =@user.created_at
+
+= link_to "Edit", edit_user_path(@user)
+= link_to "Back", home_path

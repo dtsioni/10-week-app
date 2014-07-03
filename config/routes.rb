@@ -55,8 +55,9 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
-
+  resources :users
   get '/home', to: 'pages#home'
   get "", to: "pages#home"
-  resources :users
+  
+  
 end

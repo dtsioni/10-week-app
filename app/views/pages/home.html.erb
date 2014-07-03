@@ -4,6 +4,8 @@
     <h1>Welcome!</h1>
   </div>  
   <p class="header_link"><%= link_to "Create New Post", new_post_path %></p>
+  <p class="header_link"><%= link_to "Create New User", new_user_path %></p>
+
 
   <!-- colors -->
   <% color_index = 14 %>
@@ -24,7 +26,12 @@
       
       <div class='left'>
         <p id = "author">
-          Author: <%= post.author %>
+          <%if User.find_by(id: post.user_id) == nil%>
+            null
+          <%else%>
+            Author: <%= User.find_by(id: post.user_id).username %>
+          <% end %>
+
         </p>
 
         <p id = "time">
@@ -39,7 +46,7 @@
 
       <div class="links">
         <%= link_to 'Edit Post', edit_post_path(post) %>
-        <%= link_to "Delete Post", post_path(post), method: :delete %>        
+        <%= link_to "Delete Post", post_path(post), method: :delete, data: { confirm: 'Are you sure?' } %>        
       </div>
       
       <div class="clear_fix"></div>
@@ -71,4 +78,3 @@
   <% end %>
 
   
-
