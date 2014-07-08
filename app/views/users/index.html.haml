@@ -1,5 +1,7 @@
 %h1 List of Users
-
+%h3
+  Number of Users:
+  =User.all.count
 %table
   %thead
     %tr
@@ -22,8 +24,9 @@
 
       %td= link_to "Show", user
       %td= link_to "Edit", edit_user_path(user)
-      %td= link_to "Destroy", user, method: :delete, data:{confirm: "Are you sure?"}
+      %td= link_to "Destroy", user, method: :delete, data:{confirm: "Are you sure? All posts by user will be destroyed as well."}
 %br
 
 = link_to "New User", new_user_path
+|
 = link_to "Home", home_path

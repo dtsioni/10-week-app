@@ -1,10 +1,12 @@
   
   <!-- page header -->
-  <div id="homepage_welcome">
+  <!--<div id="homepage_welcome">
     <h1>Welcome!</h1>
-  </div>  
-  <p class="header_link"><%= link_to "Create New Post", new_post_path %></p>
-  <p class="header_link"><%= link_to "Create New User", new_user_path %></p>
+  </div>  -->
+  <p class="header_link"><%= link_to "Create New Post", new_post_path %> |
+  <%= link_to "Create New User", new_user_path %> |
+  <%= link_to "Show Current Users", users_path %>
+</p>
 
 
   <!-- colors -->
@@ -29,7 +31,9 @@
           <%if User.find_by(id: post.user_id) == nil%>
             null
           <%else%>
-            Author: <%= User.find_by(id: post.user_id).username %>
+            <% var = User.find_by(id: post.user_id).username %>
+            Author:
+            <%= link_to "#{var}", user_path(User.find_by(id: post.user_id)) %>
           <% end %>
 
         </p>

@@ -9,6 +9,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    @posts = Post.all
   end
 
   def new
@@ -46,6 +47,10 @@ class UsersController < ApplicationController
 
   def destroy
     @user.destroy
+    @user.posts.each do
+      |post| post.destroy
+    end
+
     respond_to do |format|
       format.html {redirect_to home_path, notice: "User was successfully destroyed."}
       format.json {head :no_content}

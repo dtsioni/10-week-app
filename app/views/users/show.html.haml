@@ -1,0 +1,44 @@
+%p{:id => "notice"}
+  =notice
+%p
+  %strong 
+    Username:
+  %p 
+    =@user.username
+%p
+  %strong
+    User Created:
+  %p
+    =@user.created_at
+%p
+  %strong
+    Number of Posts:
+  %p
+    =@user.posts.count
+%strong
+  List of posts by
+  =@user.username
+
+
+%ol
+  -@user.posts.each do |post|  
+    %li
+      =link_to "#{post.created_at}", post
+      %ul
+        %li
+          Post title:
+          %li
+            =post.title
+            
+        %li
+          Post body:
+          %li
+            =post.body
+
+      
+
+
+
+= link_to "Edit", edit_user_path(@user)
+= link_to "Home", home_path
+= link_to "Delete User", @user, method: :delete, data:{confirm: "Are you sure? All posts by user will be destroyed as well."}
