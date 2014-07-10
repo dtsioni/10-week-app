@@ -1,0 +1,26 @@
+= form_for([@post, @comment]) do |f|
+  -if @comment.errors.any?
+    %div{:id => "error_explanation"}
+      %h2
+        = pluralize(@comment.errors.count, "error")
+        prohibited this post from being saved:
+      %ul
+        -@comment.errors.full_messages.each do |message|
+          %li=message
+        
+  
+
+  %div{:class => "field"}
+    =f.label :User
+    %br
+    =f.select :user_id, User.all.collect {|p| [p.username, p.id]}
+  %div{:class => "field"}
+    =f.label :body
+    %br
+    =f.text_field :body
+
+  %div{class: 'field'}
+    = hidden_field_tag 'comment[post_id]', @post.id
+
+  %div{:class => "actions"}
+    =f.submit

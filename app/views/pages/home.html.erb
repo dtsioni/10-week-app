@@ -20,7 +20,7 @@
     <% if color_index >= 10 then color_char = (97 - 10 + color_index).chr else color_char = color_index end%>
     <% if color_index < 10 then color_char = color_index end %>
 
-    <% hex = "4D90#{color_char}0" %>
+    <% hex = "3399#{color_char}F" %>
 
 
     <!-- post header -->
@@ -49,8 +49,10 @@
       </div>
 
       <div class="links">
-        <%= link_to 'Edit Post', edit_post_path(post) %>
-        <%= link_to "Delete Post", post_path(post), method: :delete, data: { confirm: 'Are you sure?' } %>        
+        <%= link_to 'Edit Post', edit_post_path(post) %> |
+        <%= link_to "Delete Post", post_path(post), method: :delete, data: { confirm: 'Are you sure?' } %> |
+        <%= link_to "Add Comment", new_post_comment_path(post.id) %>
+       
       </div>
       
       <div class="clear_fix"></div>
@@ -77,6 +79,43 @@
       </p>
 
     </div>
+
+    <!-- post comments -->
+    <% post.comments.each do |comment| %>
+
+      <div class = "comment_header">
+        <p class = "comment_header_info" >
+          Author: <%=link_to User.find_by(id: comment.user_id).username, User.find_by(id: comment.user_id) %>
+          <br>
+          <div id="time">
+            Time:
+            <%= comment.created_at %>
+            <% if comment.created_at != comment.updated_at %>
+              <div id="edited">
+                Last Edited:
+                <%= comment.updated_at %>
+              </div>
+            <% end %> 
+          </div>
+        </p>
+        <div class="links">
+          <%= link_to "Edit", edit_post_comment_path(post, comment) %> |
+          <%= link_to "Delete", post_comment_path(post, comment), method: :delete, data: {confirm: "Are you sure?"} %> |
+          <%= link_to "Reply", new_post_comment_path(post.id) %>
+        </div>
+        <div class="clear_fix"></div>
+
+
+      </div>
+
+      <div class = "comment_body">
+        <p class = "comment_body_info" >
+          <%= comment.body %>
+      </div>
+
+    <% end %>
+
+
 
     
   <% end %>

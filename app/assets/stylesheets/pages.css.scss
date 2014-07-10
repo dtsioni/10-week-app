@@ -9,7 +9,7 @@
 body{
   /*background-image: url("http://images2.layoutsparks.com/1/250826/trees-woods-forest-tall.jpg");
   */
-  background-color: gray;
+  background-color: #F3EFE0;
 }
 .header_link{
   
@@ -102,4 +102,41 @@ a:hover{
 a:active{
   color: #022636;
   text-decoration:underline;
+}
+
+
+.comment_header{
+  background-color: #217C7E; 
+  position: relative;
+  border: 1px solid black;
+  border-radius: 10px;
+  margin-bottom: 1px;
+  margin: auto;
+  margin-left: 400px;
+  margin-right:200px ; 
+}
+.comment_header p{
+  margin: 0;
+  margin-left: 5px;
+}
+.comment_body{
+  background-color: #9A3334;
+  margin-bottom: 15px;
+  border: 1px solid black;
+  border-radius: 10px;
+  margin-left: 400px;
+  margin-right:200px;
+}
+.comment_body_info{
+  margin:0;
+  margin-left:5px;
+}
+#comment_info{}
+#edited{
+  margin-left: 0px; 
+}
+#time{
+  display:inline;
+  float: left;
+  margin-left: 5px;
 }

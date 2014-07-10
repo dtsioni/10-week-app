@@ -1,0 +1,19 @@
+%p{:id => "notice"}
+  =notice
+%p
+  %strong
+    Author:
+  %p
+    =@comment.user_id
+%p
+  %strong
+    Comment Created:
+  %p
+    =@comment.created_at
+%p
+  %strong
+    Parent:
+  %p
+    = @comment.post.title
+
+= link_to "Home", home_path
