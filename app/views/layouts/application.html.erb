@@ -1,27 +1,22 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Welcome!</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-  
-</head>
-<body>
-  <div id="piccont">
-    <a href=<%= home_path %>>
-      <img src="http://bizitvideo.com/wp-content/uploads/2013/11/welcome.png"
-      style="display:block;
-      margin-left:auto;
-      margin-right:auto;
-      width: 200px;
-      heigth: auto;
-      filter:alpha(opacity=100);">
-    </a>
-  </div>
-  
+  <head>
 
-<%= yield %>
+    <title>Welcome!</title>
 
-</body>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>  
+
+  </head>
+
+
+  <body>
+    <%= render 'layouts/header' %>
+    <%= yield %>
+    <%= render 'layouts/footer' %>
+    <%= debug(params) if Rails.env.development? %>    
+  </body>
+
 </html>

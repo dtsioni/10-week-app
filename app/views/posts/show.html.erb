@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 <p>
   <strong>Author:</strong>
-    <%= @post.author %>
+    <%= link_to User.find_by(id: @post.user_id).username, User.find_by(id: @post.user_id)  %>
   </p>
 <p>
   <strong>Title:</strong>

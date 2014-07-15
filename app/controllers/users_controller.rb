@@ -50,6 +50,10 @@ class UsersController < ApplicationController
     @user.posts.each do
       |post| post.destroy
     end
+    @user.comments.each do
+      |comment| comment.destroy
+    end
+    
 
     respond_to do |format|
       format.html {redirect_to home_path, notice: "User was successfully destroyed."}
@@ -64,7 +68,7 @@ class UsersController < ApplicationController
 
 
     def user_params
-      params.require(:user).permit(:id, :created_at, :updated_at, :username, :post_id)
+      params.require(:user).permit(:id, :created_at, :updated_at, :username, :email, :password_digest, :password, :password_confirmation)
     end 
 end
 
