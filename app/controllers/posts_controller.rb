@@ -27,6 +27,7 @@ class PostsController < ApplicationController
   # POST /posts.json
   def create
     @post = Post.new(post_params)
+    #@post.update_attributes(author: current_user.username)
 
     respond_to do |format|
       if @post.save

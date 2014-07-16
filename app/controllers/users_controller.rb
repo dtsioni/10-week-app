@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   
 
-
+  attr_accessor :remember_token
   def index
     @users = User.all
     @posts = Post.all
@@ -60,6 +60,9 @@ class UsersController < ApplicationController
       format.json {head :no_content}
     end
   end
+  #remember token handling
+
+  
 
   private
     def set_user
@@ -68,7 +71,9 @@ class UsersController < ApplicationController
 
 
     def user_params
-      params.require(:user).permit(:id, :created_at, :updated_at, :username, :email, :password_digest, :password, :password_confirmation)
+      params.require(:user).permit(:id, :created_at, :updated_at, :username, :email,
+        :password_digest, :password, :password_confirmation,\
+        :remember_token)
     end 
 end
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140715193928) do
+ActiveRecord::Schema.define(version: 20140716150545) do
 
   create_table "comments", force: true do |t|
     t.datetime "created_at"
@@ -29,6 +29,11 @@ ActiveRecord::Schema.define(version: 20140715193928) do
     t.integer  "user_id"
   end
 
+  create_table "sessions", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "tweets", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -42,6 +47,9 @@ ActiveRecord::Schema.define(version: 20140715193928) do
     t.string   "username"
     t.string   "password_digest"
     t.string   "email"
+    t.string   "remember_token"
   end
+
+  add_index "users", ["remember_token"], name: "index_users_on_remember_token"
 
 end

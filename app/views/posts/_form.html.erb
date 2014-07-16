@@ -15,6 +15,16 @@
     <%= f.select :user_id, User.all.collect { |p| [ p.username, p.id ] } %>
   </div> -->
   <div class="field">
+    <%= f.label :user_id %>:
+    <%= link_to "#{current_user.username}", current_user %>
+    
+  </div>
+  
+    <%= hidden_field_tag 'post[user_id]', current_user.id %>
+  
+  <p>User ID:<%= current_user.id %> </p>
+
+  <div class="field">
     <%= f.label :title %><br>
     <%= f.text_field :title %>
   </div>
