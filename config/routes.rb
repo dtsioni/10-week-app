@@ -8,7 +8,11 @@ Rails.application.routes.draw do
   end
 
   get '/home', to: 'pages#home'
-  get "", to: "pages#home"
   
+  root 'pages#home'
+  
+  match '/signup',  to: 'users#new',            via: 'get'
+  match '/signin',  to: 'sessions#new',         via: 'get'
+  match '/signout', to: 'sessions#destroy',     via: 'delete'
   
 end
