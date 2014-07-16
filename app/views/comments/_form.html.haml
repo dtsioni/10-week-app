@@ -10,10 +10,10 @@
         
   
 
-  %div{:class => "field"}
-    =f.label :User
-    %br
-    =f.select :user_id, User.all.collect {|p| [p.username, p.id]}
+  /* %div{:class => "field"}
+  /*  =f.label :User
+  /*  %br
+  /*  =f.select :user_id, User.all.collect {|p| [p.username, p.id]}
   %div{:class => "field"}
     =f.label :body
     %br
@@ -21,6 +21,7 @@
 
   %div{class: 'field'}
     = hidden_field_tag 'comment[post_id]', @post.id
+    = hidden_field_tag 'comment[user_id]', current_user.id
 
   %div{:class => "actions"}
     =f.submit

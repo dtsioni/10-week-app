@@ -1,10 +1,9 @@
-%p{:id => "notice"}
-  =notice
+
 %p
   %strong
     Author:
   %p
-    =@comment.user_id
+    =link_to User.find_by(id: @comment.user_id).username, User.find_by(id: @comment.user_id)
 %p
   %strong
     Comment Created:
