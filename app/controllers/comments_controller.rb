@@ -1,6 +1,10 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: [:edit, :update, :destroy]
   before_action :set_post, only: [:edit, :update, :destroy]
+
+  #load_resource :through => :post
+  #authorize_resource :through => :post
+
   def index
     @comments = Comment.all
     @post = Post.find(params[:post_id])
@@ -8,7 +12,6 @@ class CommentsController < ApplicationController
 
   def show
     @comment = Comment.find(params[:id])
-
   end
 
   def new

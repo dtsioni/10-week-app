@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   end
 
   get '/home', to: 'pages#home'
-  
+  get '/control', to: 'pages#control'
   root 'pages#home'
   
   match '/signup',  to: 'users#new',            via: 'get'

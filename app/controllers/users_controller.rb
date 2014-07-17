@@ -1,8 +1,9 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   
+  authorize_resource
 
-  attr_accessor :remember_token
+  #attr_accessor :remember_token
   def index
     @users = User.all
     @posts = Post.all
@@ -17,6 +18,7 @@ class UsersController < ApplicationController
   end
 
   def edit
+
   end
 
   def create
@@ -28,8 +30,7 @@ class UsersController < ApplicationController
         flash[:success] = "Welcome!"              
         format.html {redirect_to @user, notice: 'User was successfully created.'}
         format.json {render :show, status: :created, location: @user}
-
-      else
+      else        
         format.html {render :new}
         format.json {render json: @user.errors, status: :unprocessable_entity}
       end
@@ -49,13 +50,9 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    
+
     @user.destroy
-    @user.posts.each do
-      |post| post.destroy
-    end
-    @user.comments.each do
-      |comment| comment.destroy
-    end
     
 
     respond_to do |format|
@@ -74,9 +71,9 @@ class UsersController < ApplicationController
 
 
     def user_params
-      params.require(:user).permit(:id, :created_at, :updated_at, :username, :email,
-        :password_digest, :password, :password_confirmation,\
-        :remember_token)
+      params.require(:user).permit(:username, :email,
+         :password, :password_confirmation,
+         :role)
     end 
 end
 

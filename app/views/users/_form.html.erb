@@ -1,21 +1,57 @@
-<%= form_for(@user) do |f| %>
-  <% if @user.errors.any? %>
+<!-- <%= form_for(@user) do |f| %> 
+
+  
+   <% if @user.errors.any? %>
     <div id="error_explanation">
+
       <h2><%= pluralize(@user.errors.count, "error") %>
-        prohibited this user from being saved:</h1>
+        prohibited this user from being saved:
+      </h2>
 
       <ul>
       <% @user.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
+
     </div>
-  <% end %>
-  <div class="field">
-    <%= f.label :username %><br>
-    <%= f.text_field :username %>
+  <% end %> -->
+
+  <div>
+    <div>
+      <%= form_for(@user) do |f| %>
+
+        <%= render 'shared/error_messages' %>
+
+        <%= f.label :username %>
+        <%= f.text_field :username %>
+
+        <br>
+
+        <%= f.label :email %>
+        <%= f.text_field :email %>
+
+        <br>
+
+        <%= f.label :password %>
+        <%= f.password_field :password %>
+
+        <br>
+
+        <%= f.label :password_confirmation, "Confirmation" %>
+        <%= f.password_field :password_confirmation %>
+
+        <br>
+        
+        <%= f.label :role, "Role" %>
+        <%= f.collection_select :role, User::ROLES, :to_s, :humanize %>
+        
+
+        <%= f.submit "Create my account", class: "btn btn-large btn-primary" %>
+      <% end %>
+    </div>
   </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+
+  
+
 <% end %>

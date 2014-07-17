@@ -1,6 +1,20 @@
 <h1>Editing User </h1>
 
-<%= render 'form' %>
+<%= form_for(@user) do |f| %>
 
-<% link_to 'Show', @user %>
-<% link_to 'Back', users_path %>
+  <%= render 'shared/error_messages' %>
+
+  <%= f.label :username %>
+  <%= f.text_field :username %>
+
+  <% if current_user.role == "admin" %>
+    <% if can? :edit_roles, User %>
+      <%= f.label :role, "Role" %>
+      <%= f.collection_select :role, User::ROLES, :to_s, :humanize %>
+    <%end%>
+    
+  <% end %>
+  <%= f.submit "Update", class: "btn btn-large btn-primary" %>
+
+<%end%>
+

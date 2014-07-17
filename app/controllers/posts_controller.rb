@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
-
+  authorize_resource
   # GET /posts
   # GET /posts.json
   def index
@@ -21,14 +21,15 @@ class PostsController < ApplicationController
 
   # GET /posts/1/edit
   def edit
+    #authorize! :edit, @post, :message => "You cannot edit this post!"
   end
 
   # POST /posts
   # POST /posts.json
   def create
-    @post = Post.new(post_params)
+    
     #@post.update_attributes(author: current_user.username)
-
+    @post = current_user.posts.new(post_params)
     respond_to do |format|
       if @post.save
         format.html { redirect_to @post, notice: 'Post was successfully created.' }
@@ -72,6 +73,6 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:body, :title, :author, :user_id)
+      params.require(:post).permit(:body, :title, :author)
     end
 end

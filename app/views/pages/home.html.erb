@@ -1,15 +1,16 @@
   
   
   <p class="header_link">
-    <%= link_to "Create New Post", new_post_path %>
+    
     <%if !signed_in? %>
-      |<%= link_to "Sign Up", new_user_path %>
-      |<%= link_to "Sign In", new_session_path %>
+      <%= link_to " Sign Up", new_user_path %>
+      |<%= link_to " Sign In", new_session_path %>
     <% end %>
     <% if signed_in? %>
-      |<%= link_to "Profile", current_user %>
+      <%= link_to "Create New Post", new_post_path %>
+      |<%= link_to " Profile", current_user %>
     <% end %>
-    |<%= link_to "Show Current Users", users_path %>
+    |<%= link_to " Show Current Users", users_path %>
   </p>
 
   <!-- colors -->
@@ -27,9 +28,9 @@
     
     <!-- post header -->
     <div class = "post_list_item_header" style="background:#<%=hex%>" >   
-
+      <!-- div -->
       <div class='left'>
-
+        <!-- author -->
         <p id = "author">
           <%if User.find_by(id: post.user_id) == nil%>
             null
@@ -39,29 +40,30 @@
             <%= link_to "#{var}", user_path(User.find_by(id: post.user_id)) %>
           <% end %>
         </p>
-
+        <!-- time -->
         <p id = "time">
           Time: <%= post.created_at %>
         </p>
-
+        <!-- title -->
         <p id="subject">
           Subject: <%= post.title %>
         </p>
-
       </div>
 
-
+      <!-- links -->
       <div class="links">
-
-        <%= link_to 'Edit Post', edit_post_path(post) %> |
-        <%= link_to "Delete Post", post_path(post), method: :delete, data: { confirm: 'Are you sure?' } %> |
-        <%= link_to "Add Comment", new_post_comment_path(post.id) %>
-       
-      </div>
-      
+        <!-- edit delete add -->
+        <% if can? :update, post%>
+          <%= link_to 'Edit Post', edit_post_path(post) %> |
+        <% end %>
+        <% if can? :delete, post%>
+          <%= link_to "Delete Post", post_path(post), method: :delete, data: { confirm: 'Are you sure?' } %> |
+        <% end %>
+        <% if can? :write, post%>
+          <%= link_to "Add Comment", new_post_comment_path(post.id) %>
+        <% end %>       
+      </div>      
       <div class="clear_fix"></div>
-
-
 
     </div>
     <!-- handle flow -->
@@ -70,17 +72,16 @@
 
 
     <!-- post body -->
-    <div class = "post_list_item_body">      
-
+    <div class = "post_list_item_body">
       <p class = "post_list_item_body_info" id="body">
         <%= post.body %>
       </p>
-
     </div>
 
     <!-- post comments -->
     <% post.comments.each do |comment| %>
       <div class = "comment_header">
+        <!-- post comments information -->
         <p class = "comment_header_info" >
           Author: <%=link_to User.find_by(id: comment.user_id).username, User.find_by(id: comment.user_id) %>
           <br>
@@ -95,21 +96,30 @@
             <% end %> 
           </div>
         </p>
+        <!-- links -->
         <div class="links">
-          <%= link_to "Edit", edit_post_comment_path(post, comment) %> |
-          <%= link_to "Delete", post_comment_path(post, comment), method: :delete, data: {confirm: "Are you sure?"} %> |
-          <%= link_to "Reply", new_post_comment_path(post.id) %>
-        </div>
-        
+          <!-- edit delete reply -->
+          <% if can? :update, comment %>
+            <%= link_to "Edit", edit_post_comment_path(post, comment) %> |  
+          <% end %>
+
+          <% if can? :delete, comment %>
+            <%= link_to "Delete", post_comment_path(post, comment), method: :delete, data: {confirm: "Are you sure?"} %> |
+          <% end %>
+
+          <% if can? :write, comment %>
+            <%= link_to "Reply", new_post_comment_path(post.id) %>
+          <% end %>
+        </div>        
         <div class="clear_fix"></div>
 
-      </div>
-
-      <div class = "comment_body">
-        <p class = "comment_body_info" >
-          <%= comment.body %>
-        </p>
-      </div>
+        </div>
+        <!-- comment body -->
+        <div class = "comment_body">
+          <p class = "comment_body_info" >
+            <%= comment.body %>
+          </p>
+        </div>
 
     <% end %>    
   <% end %>
