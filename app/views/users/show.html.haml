@@ -6,6 +6,11 @@
     =@user.username
 %p
   %strong
+    Role:
+  %p
+    =@user.role.humanize
+%p
+  %strong
     User Created:
   %p
     =@user.created_at
